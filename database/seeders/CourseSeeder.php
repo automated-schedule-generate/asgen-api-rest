@@ -24,7 +24,8 @@ class CourseSeeder extends Seeder
             ],
             [
                 'name' => 'Administração (ADM)',
-                'total_semesters' => 8
+                'total_semesters' => 8,
+                'class_time' => 60
             ],
             [
                 'name' => 'Logística (LOG)',

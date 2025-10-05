@@ -13,7 +13,8 @@ return new class extends Migration {
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
             $table->integer('age');
-            $table->enum('semester', ['1', '2']);
+            $table->enum('semester', [1, 2]);
+            $table->string('is_finished');
             $table->timestamps();
         });
     }
