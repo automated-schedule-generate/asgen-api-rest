@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->unique();
             $table->integer('total_semesters');
+            $table->enum('class_time', [45, 60])->default(45);
             $table->timestamps();
         });
     }

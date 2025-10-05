@@ -15,7 +15,7 @@ return new class extends Migration {
                 ->constrained('users')
                 ->onDelete('cascade');
             $table->primary('user_id');
-            $table->enum('workload', ['20', '40']);
+            $table->enum('workload', [20, 40]);
             $table->boolean('special_need')->default(false);
             $table->string('description_special_need')->nullable();
             $table->string('observation')->nullable();
