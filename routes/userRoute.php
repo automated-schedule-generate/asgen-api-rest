@@ -10,7 +10,7 @@ Route::prefix('users')
         Route::post('/', 'register');
         Route::put('/{user}', 'update');
         Route::delete('/{user}', 'destroy');
-        Route::middleware(['auth:sanctum', 'ability:user-teacher'])
+        Route::middleware(['auth:sanctum', 'ability:user-den'])
         ->group(function () {
                 Route::put('/user_status/{user}', 'update_user_status');
         });
