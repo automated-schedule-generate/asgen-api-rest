@@ -5,14 +5,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('teachers')
     ->controller(TeacherController::class)
+    ->middleware(['auth:sanctum'])
     ->group(function () {
-        Route::middleware(['auth:sanctum'])
-            ->group(function () {
-                Route::post('/', 'store');
+        Route::get('/me', 'me');
+        Route::post('/', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+        Route::middleware(['ability:user-cradt,user-den'])
+        ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{id}', 'show');
-                Route::put('/{id}', 'update');
-                Route::delete('/{id}', 'destroy');
-            });
-
+        });
     });

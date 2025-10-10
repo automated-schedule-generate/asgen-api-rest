@@ -17,7 +17,10 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::with('user')
-            ->paginate(10);
+        ->whereHas('user', function ($query) {
+            $query->where('is_active', true);
+        })
+        ->paginate(10);
 
         return response()->json($teachers);
     }
@@ -101,9 +104,18 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Teacher $teachers)
+    public function destroy($id)
     {
-        $teachers->delete();
+        $teacher = Teacher::where('user_id', $id)->firstOrFail();
+        $teacher->user->is_active = false;
+        $teacher->user->save();
+        
         return response()->json(null, 204);
     }
+
+    public function me(){
+        $teacher = Teacher::where('user_id', auth()->user()->id)->firstOrFail();
+        return response()->json($teacher);
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateUserStatusRequest;
 use App\Models\User;
 class UserController extends Controller
 {
@@ -74,6 +75,14 @@ class UserController extends Controller
     {
         $user->delete();
         return response()->json(null, 204);
+    }
+
+    public function update_user_status(UpdateUserStatusRequest $request, User $user)
+    {
+        $user->is_active = $request->is_active;
+        $user->save();
+
+        return response()->json($user);
     }
 
 }
