@@ -22,7 +22,7 @@ class StoreCoordinatorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start' => '',
+            'start' => 'required',
             'end' => '',
             'teacher_id' => 'required',
         ];

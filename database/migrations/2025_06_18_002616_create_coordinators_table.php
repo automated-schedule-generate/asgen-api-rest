@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('coordinators', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('start')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('start');
             $table->timestamp('end')->nullable();
             $table->foreignId('teacher_id')
                 ->references('user_id')
