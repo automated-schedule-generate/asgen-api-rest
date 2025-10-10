@@ -6,9 +6,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')
     ->controller(UserController::class)
     ->group(function () {
-        //Route::get('/', 'index');
         Route::get('/{user}', 'show');
         Route::post('/', 'register');
         Route::put('/{user}', 'update');
         Route::delete('/{user}', 'destroy');
+        Route::middleware(['auth:sanctum', 'ability:user-den'])
+        ->group(function () {
+                Route::put('/user_status/{user}', 'update_user_status');
+        });
     });
